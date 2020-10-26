@@ -52,7 +52,7 @@ const App = () => {
     getCountriesData();
   }, []);
 
-  console.log(casesType);
+  
 
   const onCountryChange = async (e) => {
     const countryCode = e.target.value;
@@ -66,8 +66,13 @@ const App = () => {
       .then((data) => {
         setInputCountry(countryCode);
         setCountryInfo(data);
-        setMapCenter([data.countryInfo.lat, data.countryInfo.long]);
+       if(countryCode==='worldwide'){
+        setMapCenter({lat:34.80746,lng:-40.4796});
         setMapZoom(4);
+        }else{
+        setMapCenter([data.countryInfo.lat,data.countryInfo.long]);
+        setMapZoom(4);
+        }
       });
   };
 
